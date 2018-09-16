@@ -89,12 +89,12 @@ public:
         
 		/* budget */		
 		consensus.nBudgetPaymentsStartBlock = 98800; 
-        consensus.nBudgetPaymentsCycleBlocks = 7300; // ~(60*24*30)/1.5 / 4
+        consensus.nBudgetPaymentsCycleBlocks = 14600; // ~(60*24*30)/1.5 / 2
         consensus.nBudgetPaymentsWindowBlocks = 100;
         consensus.nBudgetProposalEstablishingTime = 60*60*24; // in seconds 
 		
         consensus.nSuperblockStartBlock = 98800; 
-        consensus.nSuperblockCycle = 7300; // ~(60*24*30)/1.5 / 4
+        consensus.nSuperblockCycle = 14600; // ~(60*24*30)/1.5 / 2
         
 		/* Governance */ 
 		consensus.nGovernanceMinQuorum = 10;
