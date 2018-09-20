@@ -361,8 +361,8 @@ bool CMasternodeBroadcast::Create(std::string strService, std::string strKeyMast
         return false;
     };
 
-    //need correct blocks to send ping
-    if (!fOffline && !masternodeSync.IsBlockchainSynced())
+    // Wait for sync to finish first before relay
+    if (!fOffline && !masternodeSync.IsSynced())
         return Log("Sync in progress. Must wait until sync is complete to start Masternode");
 
     if (!CMessageSigner::GetKeysFromSecret(strKeyMasternode, keyMasternodeNew, pubKeyMasternodeNew))
