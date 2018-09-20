@@ -9,6 +9,7 @@
 #include "netbase.h"
 #include "validation.h"
 #include "masternode-payments.h"
+#include "clientversion.h"
 #include "masternode-sync.h"
 #include "masternodeconfig.h"
 #include "masternodeman.h"
