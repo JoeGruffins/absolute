@@ -33,15 +33,20 @@ printf  "\n\n******* Starting Absolute-Community Masternode installation *******
 printf " working directory is $(pwd)\n"
 {
 echo "Step 1 : Updating packages"
+	sudo apt-get update -y -qq
+	sudo apt-get upgrade -y -qq
+	sudo apt-get install software-properties-common -y -qq
 	sudo add-apt-repository ppa:bitcoin/bitcoin -y
 	sudo apt-get update -y -qq	
 	sudo apt-get install nano htop -y -qq
 	sudo apt-get install pwgen  -y -qq	
 	sudo apt-get install libdb4.8-dev libdb4.8++-dev -y -qq
+	sudo apt-get install tmux  -y -qq
 	sudo apt-get install libevent-pthreads-2.0-5 -y -qq
 	sudo apt-get install libboost-all-dev -y -qq
 	sudo apt-get install libzmq3-dev -y -qq
 	sudo apt-get install libminiupnpc-dev -y -qq
+	sudo apt install virtualenv -y -qq
 
 	printf "Detect python version "
 	p_version="$(python -V)"
@@ -68,7 +73,7 @@ echo "Step 1 : Updating packages"
 	
 	if [ ! -f absolute_12.2.4_linux.tar.gz ]; then
 		echo "Dowloading..."
-		wget https://github.com/absolute-community/absolute/releases/download/12.2.4/absolute_12.2.4_linux.tar.gz -O absolute_12.2.4_linux.tar.gz -q
+		wget https://github.com/absolute-community/absolute/releases/download/v12.2.4/absolute_12.2.4_linux.tar.gz -O absolute_12.2.4_linux.tar.gz -q
 	else
 		printWarning "File already exist"
 	fi
@@ -103,7 +108,8 @@ echo "Step 1 : Updating packages"
 
 		printf "\n#--- basic configuration --- \nrpcuser=user\nrpcpassword=$PASS\nrpcport=18889\ndaemon=1\nlisten=1\nserver=1\nmaxconnections=256\nrpcallowip=127.0.0.1\nexternalip=$ext_ip:18888\n" > $conf_path
 		printf "\n#--- masternode ---\nmasternode=1\nmasternodeprivkey=$mn_key\n" >> $conf_path
-		printf "\n#--- new nodes ---\naddnode=139.99.41.241:18888\naddnode=139.99.41.242:18888\naddnode=139.99.202.1:18888\n" >> $conf_path
+		printf "\n#--- new nodes ---\naddnode=139.99.41.241:18888\naddnode=139.99.41.242:18888\naddnode=139.99.202.1:18888\naddnode=51.255.174.238:18888\naddnode=54.37.14.240:18888\naddnode=164.132.195.79:18888\naddnode=151.80.233.116:18888\naddnode=139.99.96.203:18888\naddnode=139.99.40.157:18888\naddnode=139.99.41.35:1:18888\naddnode=139.99.41.198:18888\naddnode=139.99.44.0:1:18888\naddnode=139.99.97.225:18888\naddnode=139.99.99.113:18888\naddnode=139.99.99.108:18888\n" >> /$HOME/.absolutecore/absolute.conf
+
 		
 	else
 		printError "Configuration already exist. Remove this file '$conf_path' or configure manyally"
